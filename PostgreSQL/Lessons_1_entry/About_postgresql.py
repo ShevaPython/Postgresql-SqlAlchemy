@@ -1,5 +1,5 @@
 """
-PostgresqlSQLAlchemy
+Postgresql
 
 - Почему изучаем SQL.
 - Что такое БД.

@@ -56,3 +56,4 @@ with connection_psql.cursor() as cur:
     )
 
     pprint(cur.fetchall())
+
