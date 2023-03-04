@@ -36,7 +36,7 @@ with connection_psql.cursor() as cur:
         """select first_name,
                   last_name,
                   concat(first_name,' ',last_name),
-                  first_name || ' ' || last_name ,
+                  first_name|| ' ' || last_name ,
                   char_length(first_name || ' ' || last_name),
                   trim('     ' || first_name || '   '),
                   substring(first_name,1,3) || '' || substring(last_name,1,3),
@@ -45,6 +45,7 @@ with connection_psql.cursor() as cur:
                   lower(first_name)
            from actor;"""
     )
+
     pprint(cur.fetchone())
     pprint("_____________________________________________")
     cur.execute(
@@ -56,4 +57,3 @@ with connection_psql.cursor() as cur:
     )
 
     pprint(cur.fetchall())
-

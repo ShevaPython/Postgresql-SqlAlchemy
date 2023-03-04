@@ -1,1 +1,1 @@
-from .connect_psql import ConnectPsql
+from .connect_psql import con

@@ -17,3 +17,6 @@ class ConnectPsql():
             print( "Ошибка подключения к бд", ex )
 
         return cls.connect
+
+
+con = ConnectPsql.create_con()
