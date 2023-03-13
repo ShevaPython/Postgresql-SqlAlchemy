@@ -22,3 +22,4 @@ SqlAlchemy
 - ORDER BY - сортировка
 - Distinct - уникальные значения
 - JOIN соединения таблиц
+- Groupe_by - групировка
