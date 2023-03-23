@@ -1,10 +1,10 @@
-from db_connect import ConnectPsql
+from db_connect import con
 from psycopg2._psycopg import cursor
 from pprint import pprint
 
-con_psql = ConnectPsql.create_con()
+
 """Математические функции"""
-with con_psql.cursor() as cur:
+with con.cursor() as cur:
     cur: cursor
     cur.execute(
         """
