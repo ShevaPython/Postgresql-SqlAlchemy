@@ -1,5 +1,5 @@
 from pprint import pprint
-from db_connect import ConnectPsql
+from db_connect.connect_psql import ConnectPsql
 
 
 con = ConnectPsql.create_con()

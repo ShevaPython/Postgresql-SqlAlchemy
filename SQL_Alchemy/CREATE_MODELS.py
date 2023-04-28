@@ -9,9 +9,10 @@ from datetime import datetime
 from CREATE_CONECT_DATABASE_ENGINE import engine
 
 
+
 """
 Создание моделей
-https://pythonru.com/biblioteki/shemy-v-sqlalchemy-orm
+
 Модель — это класс Python, соответствующий таблице в базе данных, а его свойства — это колонки.
 
 Чтобы класс был валидной моделью, нужно соответствовать следующим требованиям:
@@ -33,21 +34,28 @@ class User(Base):
     status = Column(String(20), default='unregister')
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now, onupdate=datetime.now)
-    wallets = relationship("Wallet")
+    wallet = relationship("Wallet", backref='user', uselist=False)
 
     """При использовании ORM ключи и ограничения добавляются с помощью атрибута __table_args__."""
     __table_args__ = (
         UniqueConstraint('photo'),
     )
 
+    def __repr__(self):
+        return F"{self.id}"
+
 
 class Wallet(Base):
     __tablename__ = 'wallets'
-    id = Column(Integer,primary_key=True)
-    sum_wallet = Column(Float,default=0)
+    id = Column(Integer, primary_key=True)
+    sum_wallet = Column(Float, default=0)
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now, onupdate=datetime.now)
-    user_id = Column(Integer,ForeignKey('users.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
+
+    def __repr__(self):
+        return F"{self.id}"
 
 
 Base.metadata.create_all(engine)
+# Base.metadata.drop_all(engine)#удаления всех таблиц
