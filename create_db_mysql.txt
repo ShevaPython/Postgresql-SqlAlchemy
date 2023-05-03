@@ -1,0 +1,95 @@
+
+CREATE TABLE Publishers (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  description VARCHAR(255),
+  publisher_site VARCHAR(255)
+);
+
+CREATE TABLE Developers (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  description VARCHAR(255),
+  developer_site VARCHAR(255)
+);
+
+CREATE TABLE Games (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  price DECIMAL(10, 2),
+  developer_id INT NOT NULL,
+  publisher_id INT NOT NULL,
+  FOREIGN KEY (developer_id) REFERENCES Developers(id),
+  FOREIGN KEY (publisher_id) REFERENCES Publishers(id)
+);
+
+
+CREATE TABLE Genres (
+  id INT PRIMARY KEY,
+  genre VARCHAR(255)
+);
+
+CREATE TABLE Games_Genres (
+  game_id INT NOT NULL,
+  genre_id INT NOT NULL,
+  PRIMARY KEY (game_id, genre_id),
+  FOREIGN KEY (game_id) REFERENCES Games(id),
+  FOREIGN KEY (genre_id) REFERENCES Genres(id)
+);
+
+CREATE TABLE Clients (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  surname VARCHAR(255),
+  nickname VARCHAR(255),
+  date_of_registration DATE,
+  online_wallet DECIMAL(10, 2)
+);
+
+CREATE TABLE Job_Titles (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  salary DECIMAL(10, 2)
+);
+
+CREATE TABLE Employees (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  surname VARCHAR(255),
+  passport VARCHAR(255),
+  date_of_employment DATE,
+  job_title_id INT NOT NULL,
+  FOREIGN KEY (job_title_id) REFERENCES Job_Titles(id)
+);
+
+
+
+CREATE TABLE Sales (
+  id INT PRIMARY KEY,
+  game_id INT NOT NULL,
+  client_id INT NOT NULL,
+  employee_id INT NOT NULL,
+  sale_date DATE,
+  price DECIMAL(10, 2),
+  FOREIGN KEY (game_id) REFERENCES Games(id),
+  FOREIGN KEY (client_id) REFERENCES Clients(id),
+  FOREIGN KEY (employee_id) REFERENCES Employees(id)
+);
+
+CREATE TABLE Orders (
+  id INT PRIMARY KEY,
+  client_id INT NOT NULL,
+  order_date DATE,
+  total_price DECIMAL(10, 2),
+  FOREIGN KEY (client_id) REFERENCES Clients(id)
+);
+
+CREATE TABLE Order_Products (
+  order_id INT NOT NULL,
+  game_id INT NOT NULL,
+  quantity INT NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  PRIMARY KEY (order_id, game_id),
+  FOREIGN KEY (order_id) REFERENCES Orders(id),
+  FOREIGN KEY (game_id) REFERENCES Games(id)
+);

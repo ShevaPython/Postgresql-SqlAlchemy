@@ -4,7 +4,6 @@ from sqlalchemy.orm import sessionmaker
 from SQL_Alchemy import User, Wallet
 
 """
-
 Метод	Описание
 all()	Возвращает результат запроса (объект Query) в виде списка
 count()	Возвращает общее количество записей в запросе
