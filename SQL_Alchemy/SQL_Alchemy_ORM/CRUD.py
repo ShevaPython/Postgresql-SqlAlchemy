@@ -1,4 +1,4 @@
-from CREATE_CONECT_DATABASE_ENGINE import engine
+from SQL_Alchemy_ORM import engine
 from sqlalchemy.orm import sessionmaker
 
 from SQL_Alchemy import User, Wallet
@@ -23,25 +23,3 @@ having(criterion)	Возвращает экземпляр Query после до�
 
 Session = sessionmaker(bind=engine)
 session = Session()
-print(session.query(User).all())
-# Вызов метода all() на большом объекте результата не очень эффективен.
-# Вместо этого стоит использовать цикл for для перебора по объекту Query
-for user in session.query(User):
-    print(user.name,user.age,user.status,sep='-')
-
-"""count() возвращает количество элементов в результате"""
-print(session.query(Wallet).count())
-print('___________')
-
-"""first() возвращает первый результат запроса или None, если последний не вернул данных."""
-print(session.query(Wallet.user_id).first())
-print('___________')
-
-"""get() возвращает экземпляр с соответствующим первичным ключом или None, если такой объект не был найден."""
-print(session.get(User,1))
-print('__________')
-
-"""Этот метод позволяет отфильтровать результаты, добавив оператор WHERE.
- Он принимает колонку, оператор и значение. Например:"""
-print(session.query(User).filter(User.name == "sss"))
-print('___________')

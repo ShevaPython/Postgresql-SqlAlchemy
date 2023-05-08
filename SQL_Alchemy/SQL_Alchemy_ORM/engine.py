@@ -1,7 +1,7 @@
 import sqlalchemy
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-from datta import settings
+from datta.settings import POSTGRES_URI_Alchemy_ORM
 
 """
 Дополнительные аргументы
@@ -22,7 +22,8 @@ from sqlalchemy import create_engine
 
 # Подключение к серверу PostgreSQL на localhost с помощью psycopg2 DBAPI
 engine = create_engine(
-    F"postgresql+psycopg2://{settings.NAME_PGUSER_SQLALCHEMY}:{settings.PGPASSWORD}@{settings.ip}/{settings.SQL_ALCHEMY_DATABASE}",
+    POSTGRES_URI_Alchemy_ORM,
     echo=True, pool_size=6, max_overflow=10)
 engine.connect()
 print(engine)
+

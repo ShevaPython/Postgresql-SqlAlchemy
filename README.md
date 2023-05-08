@@ -31,7 +31,8 @@ PostgreSQL:
 - CRUD - чтения,запись,изменения,удаления
 
 SQL_Alchemy:
--Create_conect_database -подключения
--Create_models - создания моделей
--ADD_IN_TABLE - добавления в таблицы
--CRUD - добавления,чтения,изменения,удаления тблиц!
+
+- Create_conect_database -подключения
+- Create_models - создания моделей
+- ADD_IN_TABLE - добавления в таблицы
+- CRUD - добавления,чтения,изменения,удаления тблиц!
