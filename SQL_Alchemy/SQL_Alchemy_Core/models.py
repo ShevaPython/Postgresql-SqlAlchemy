@@ -8,30 +8,30 @@ metadata = MetaData()
 
 publishers = Table('publishers', metadata,
     Column('id', Integer, primary_key=True),
-    Column('name', String(255)),
-    Column('description', TEXT),
-    Column('publisher_site', String(255))
+    Column('name', String(255),nullable=False),
+    Column('description', TEXT,nullable=False),
+    Column('publisher_site', String(255),nullable=True)
 )
 
 developers = Table('developers', metadata,
     Column('id', Integer, primary_key=True),
-    Column('name', String(255)),
-    Column('description', TEXT),
-    Column('developer_site', String(255))
+    Column('name', String(255),nullable=False),
+    Column('description', TEXT,nullable=False),
+    Column('developer_site', String(255),nullable=True)
 )
 
 games = Table('games', metadata,
     Column('id', Integer, primary_key=True),
-    Column('name', String(255)),
-    Column('description',TEXT),
-    Column('price', Float),
+    Column('name', String(255),nullable=False),
+    Column('description',TEXT,nullable=False),
+    Column('price', Float,nullable=False),
     Column('developer_id', Integer, ForeignKey('developers.id')),
     Column('publisher_id', Integer, ForeignKey('publishers.id'))
 )
 
 genres = Table('genres', metadata,
     Column('id', Integer, primary_key=True),
-    Column('genre', String(255))
+    Column('name', String(255),nullable=False)
 )
 
 games_genres = Table('games_genres', metadata,
@@ -41,18 +41,18 @@ games_genres = Table('games_genres', metadata,
 
 clients = Table('clients', metadata,
     Column('id', Integer, primary_key=True),
-    Column('name', String(255)),
-    Column('surname', String(255)),
-    Column('nickname', String(255)),
+    Column('name', String(255),nullable=False),
+    Column('surname', String(255),nullable=False),
+    Column('nickname', String(255),nullable=False),
     Column('date_of_registration', Date),
-    Column('online_wallet', Float)
+    Column('online_wallet', Float,default=0)
 )
 
 orders = Table('orders', metadata,
     Column('id', Integer, primary_key=True),
     Column('client_id', Integer, ForeignKey('clients.id')),
     Column('order_date', Date),
-    Column('total_price', Float)
+    Column('total_price', Float,nullable=False)
 )
 
 order_products = Table('order_products', metadata,
@@ -71,7 +71,7 @@ sales = Table('sales', metadata,
 )
 
 
-metadata.drop_all(engine)
+# metadata.drop_all(engine)
 metadata.create_all(engine)
 
 
