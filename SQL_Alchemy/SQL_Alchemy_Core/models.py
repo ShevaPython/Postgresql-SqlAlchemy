@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Table, Column, Integer, String, Date, Float, ForeignKey,MetaData,TEXT
+from sqlalchemy import  Table, Column, Integer, String, Date, Float, ForeignKey,MetaData,TEXT,func
 from SQL_Alchemy.SQL_Alchemy_Core import engine
 
 #Создания обьэкта метаданных
@@ -43,8 +43,8 @@ clients = Table('clients', metadata,
     Column('id', Integer, primary_key=True),
     Column('name', String(255),nullable=False),
     Column('surname', String(255),nullable=False),
-    Column('nickname', String(255),nullable=False),
-    Column('date_of_registration', Date),
+    Column('nickname', String(255),unique=True,nullable=False),
+    Column('date_of_registration', Date,default=func.now()),
     Column('online_wallet', Float,default=0)
 )
 
